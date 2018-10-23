@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run aditya/dockreact npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "elasticbeanstalk-us-east-1-878822303919"
+  bucket_path: "docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_KEY: 
+    secure: "$AWS_SECRET_KEY"
